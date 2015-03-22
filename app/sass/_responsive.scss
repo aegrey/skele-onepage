@@ -1,0 +1,66 @@
+// _responsive.scss 
+// included in global.scss
+
+// RESPONSIVE STYLES
+// Responsive content styles
+// ------------------------------
+
+
+// Smartphones 
+// (portrait and landscape)
+@media only screen 
+and (min-device-width : 300px) 
+and (max-device-width : 480px) {
+	body {
+		font-size: 60%;
+	}
+}
+
+// Smartphones 
+// (landscape) 
+@media only screen 
+and (min-device-width : 321px)
+and (max-device-width : 480px) {
+	
+}
+
+// Smartphones 
+// (portrait) 
+@media only screen 
+and (max-device-width : 320px) {
+	
+}
+
+// iPads 
+// (portrait and landscape)
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+	
+}
+
+// iPads 
+// (landscape)
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+	
+}
+
+// iPads 
+// (portrait)
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+	
+}
+
+// iPhone 4 
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+	
+
+}

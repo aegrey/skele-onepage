@@ -1,0 +1,198 @@
+//global.scss
+
+//RESETS
+//Eric Meyer HTML5 resets
+// ----------------------------------------------
+@import 'reset';
+
+button, a, a:active, button:focus { outline: 0; }
+.container-fluid { padding: 0px; }
+
+// VARIABLES
+// SASS Variables
+// ----------------------------------------------
+$title-font: Verdana, Helvetica, sans-serif;
+$copy-font: Helvetica, sans-serif;
+
+//colors for fonts, elements
+$light-font: #ffffff;
+$dark-font: #000000;
+$lightest-grey: #dadada; //logo, backgrounds
+$light-grey: #cdcdcd; //title bar/nav bg
+$mid-grey: #626262; //nav, links
+$dark-grey: rgba(76,76,76,0.7); //opaque overlay
+
+
+// BASIC STYLES
+// Styles used throughout the site
+// ----------------------------------------------
+body {
+	background-color: #ffffff;
+	color: $dark-font;
+	font-size: 100%;
+	font-family: $copy-font;
+	font-weight: 400;
+}
+
+.page, nav, header, footer {
+	width: 95%;
+	max-width: 1069px;
+	margin: 0px auto;
+}
+
+.page {
+	clear: both;
+}
+
+.section {
+	padding-top: 50px;
+	position: relative;
+}
+
+.hide { display: none; }
+.left { text-align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+.no-margin { margin: 0px; padding: 0px; }
+
+.bold, b {
+	font-weight: bold;
+}
+.normal {
+	font-weight: normal;
+}
+.fa { 
+	width: 1.2em; 
+	text-align: center; 
+	}
+
+a, a:visited { 
+	text-decoration: none !important;
+	color: $dark-font;
+	text-decoration: none;
+	-o-transition: opacity .2s ease-out, color .8s ease-in;
+	-ms-transition: opacity .2s ease-out, color .8s ease-in;
+	-moz-transition: opacity .2s ease-out, color .8s ease-in;
+	-webkit-transition: opacity .2s ease-out, color .8s ease-in;
+	transition: opacity .2s ease-out, color .8s ease-in;
+}
+a:hover {
+	color: $mid-grey;
+	text-decoration: none;
+}
+
+h1 {
+	font-family: $title-font;
+	color: $dark-font;
+	font-size: 3em;
+	margin-top: 20px;
+	font-weight: bold;
+	text-align: right;
+}
+
+h2 {
+	font-family: $title-font;
+	color: $dark-font;
+	font-size: 2.3em;
+	margin-top: 20px;
+
+}
+
+h3 {
+	font-family: $title-font;
+	color: $dark-font;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-align: center;
+	line-height: 2em;
+}
+
+h4 {
+	color: $dark-font;
+	font-size: 1.5em;
+	margin-top: 20px;
+}
+
+h5 {
+	color: $dark-font;
+	font-size: 1.2em;
+	margin-top: 20px;
+}
+
+p {
+	color: $dark-font;
+	font-size: .85em;
+	margin-top: 20px;
+	font-weight: 300;
+}
+
+// HEADER STYLES
+// top bar, nav, logo, tagline
+// ----------------------------------------------
+
+//top bar w/ hidden seo content
+div.top {
+	font-size: 1px;
+	height: 1px;
+	position: absolute;
+	top: -1px;
+	opacity: 0.1;
+}
+
+//Main Navigation
+nav {
+	position: fixed;
+	right: 0;
+	left: 0;
+	top: 15px;
+	z-index: 200;
+
+	#navlist {
+		text-align: right;
+		li {
+			display: inline-block;
+			margin: 0px 0px 0px 40px;
+
+			a {
+				display: block;
+				font-family: $copy-font;
+				color: $mid-grey;
+				font-size: 1.2em;
+				font-weight: bold;
+			}
+			a:hover {
+				color: $dark-font;
+			}
+			a.active {
+				opacity: $dark-font;
+			}
+		}
+	}
+}
+
+header {
+	.logo {
+		position: relative;
+		float: left;
+		clear: none;
+		img {
+			border: 0;
+		}
+	}
+
+}
+
+
+// FOOTER STYLES
+// ----------------------------------------------
+footer {
+		
+}
+
+// IMPORTS
+// IE and Responsive seperate stylesheets
+// ----------------------------------------------
+@import 'ie';
+@import 'responsive';
+
+//END

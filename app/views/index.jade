@@ -1,0 +1,26 @@
+extends includes/layout
+
+// ------------------------------
+// CONTENT BLOCK
+// All content sections for the page
+// ------------------------------
+block content
+	div.sections
+		//When Jade adds variable support for includes
+			//each val in pages
+			//#{val}
+			//div##{val}.container-fluid.section
+			//include ./pages/#{val}
+
+		
+		//ONE
+		div#one.container-fluid.section
+			include ./pages/one
+
+		//TWO
+		div#two.container-fluid.section
+			include ./pages/two
+
+		//THREE
+		div#three.container-fluid.section
+			include ./pages/three
