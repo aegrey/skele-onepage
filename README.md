@@ -3,9 +3,8 @@
 ----
 This is a skeleton originally built for my own portfolio, [http://www.anneliesegrey.com](http://www.anneliesegrey.com). I've got further customizations planned, but for now it's a great simple base that uses Bootstrap for responsiveness (of course, actual responsiveness depends on how you define the content you put within each page).
 
-I am working on functionality to have the pages "snap" on scroll however this isn't yet in place. I'm building this out custom due to the fact that for responsiveness (as well as in general) content in a section may go over the screen height and no current single page scrolling libraries address this. 
+I am working on functionality to have the pages "snap" on scroll however this isn't yet in place. I'm building this out custom due to the fact that for responsiveness (as well as in general) content in a section may go over the screen height and no current single page scrolling libraries address this.
 
-There's not currently functionality for Parallax 
 ----
 #### Computer Requirements
  * Ruby - https://www.ruby-lang.org/
