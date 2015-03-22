@@ -31,15 +31,15 @@ To setup application, from the application root directory, run:
 	```
 ----
 ### Config
-Configuration located in app/views/includes/config.jade. Carried over into JS. Set pages here, update index.html with sections (no var ability for Jade to iterate this for the time being, may redo using mixins or fork Jade).
+Configuration for the application is located in app/views/includes/config.jade. This file exists to add any account keys or variables you'll use throughout the page. These variables are also carried over into JS (via scripts.jade) for easy use for social media, etc. I've also set the section "pages" here that auto populates the nav, but you'll need to update index.html as well with each section as there's not the ability to set an include file name with a variable in Jade. I'm looking into this though, and may update with an alternative solution.
 
 ### Scripts
-All JS scripts included in app/views/includes/scripts.jade. Nav items have Google Analytics event tags - you can remove these if you wish from header.jade, global.js, scripts.jade
+All javascript calls are defined in app/views/includes/scripts.jade. Google Analytics is pre-added, you can remove if you wish from header.jade, global.js, scripts.jade. See Gulpfile for specifics, I currently have scripts defined manually so they can be loaded in specific order. You can change this and set global JS vars in scripts.jade. 
 
-### Pages
-All pages in pages/directory as separate Jade files. Comments in here/throughout code guide to some basic styles.
+### Section Pages
+All sections are in stored pages/ directory. 
 
 ----
 #### IN DEVELOPMENT:
 - **Fix Navigation/Scrolling:** Adding a smooth scrolling, better algorithm for page detection and fixing page snap functionality.
-
+- **Jade Include:** Determine a way to define an include during iteration, or rewrite code so variables can be used.
