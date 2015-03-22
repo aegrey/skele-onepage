@@ -14,14 +14,14 @@ var scrolling = false;
 // -------------------------
 var Offsets = {
 	
-	//singlePage
+	//function: singlePage
 	//requires: page (ID)
 	singlePage: function(page) {
 		data = $('#'+page).offset().top;
 		return data;
 	},
 
-	//allPages
+	//function: allPages
 	//returns all positions
 	allPages: function() {
 		var id;
@@ -31,7 +31,7 @@ var Offsets = {
 
 		$('.section').each(function(i){
 			id = $(this).attr('id');
-			positions.push(singlePage(id));
+			positions.push(Offsets.singlePage(id));
 			pages.push(id);
 			heights.push($(this).outerHeight());
 		});
@@ -46,7 +46,7 @@ var Offsets = {
 // ----------------------------------
 var Navigation = {
 	
-	//init
+	//function: init
 	//handles nav click
 	init: function() {
 		$('#navlist li a').click(function(e){    
@@ -80,12 +80,13 @@ var Navigation = {
 // --------------------------------------
 var Scroll = {
 
-	//pageSnap
-	//Handles active nav & page snap scroll
+	//function: pageSnap
+	//handles manual scroll nav highlights
+	//handles manual scroll page snap (currently not functional)
 	//requires: direction (up, down)
 	pageSnap: function(direction) {
 		var scrollAction, i, height, end, viewed, diff;
-		var offsets = Offsets();
+		var offsets = Offsets.allPages();
 		var position = $view.scrollTop();
 		var viewport = $view.height();
 		var disable = 0;
@@ -148,7 +149,8 @@ var Scroll = {
 		});
 
 	},
-
+	//function: init
+	//initiates page scrolling binds
 	init: function() {
 		var timeout = null;
 		var lastscroll = 0;
@@ -173,7 +175,7 @@ var Scroll = {
 						timeout = false;
 					}
 					timeout = setTimeout(
-						pageSnap(direction), 200);
+						Scroll.pageSnap(direction), 200);
 					direction = null;
 				}
 			}
@@ -185,6 +187,8 @@ var Scroll = {
 // Responsive functionality
 //-----------------------------
 var Responsive = {
+	//function init
+	//initiates window resize bind
 	init: function() {
 		$('.section').css('min-height', $view.height());
 
