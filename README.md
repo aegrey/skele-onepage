@@ -1,7 +1,7 @@
 # skeleOnePage
 ### Responsive One Page Skeleton using Gulp, Jade, Sass
 ----
-This is a skeleton originally built for my own portfolio, [http://www.anneliesegrey.com](http://www.anneliesegrey.com) I've got further customizations planned, but for now it's a great simple base, that's responsive using bootstrap. (of course, responsive depends on how you define the content you put within each page).
+This is a skeleton originally built for my own portfolio, [http://www.anneliesegrey.com](http://www.anneliesegrey.com). I've got further customizations planned, but for now it's a great simple base, that's responsive using bootstrap. (of course, responsive depends on how you define the content you put within each page).
 
 I am working on functionality to have the pages "snap" on scroll however this isn't yet in place. I'm building this out custom despite there being other libraries that accomplish this due to the fact that for responsiveness (as well as just in general) a sections content may go over the screen height and no current single page libraries address this. 
 
