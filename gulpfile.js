@@ -5,14 +5,12 @@ runSequence = require('run-sequence'),
 gutil       = require('gulp-util'),
 jshint 		= require('gulp-jshint'),
 clean       = require('gulp-clean'),
-prefixer    = require('gulp-autoprefixer'),
 sass        = require('gulp-sass'),
 rename 		= require('gulp-rename'),
 concat 		= require('gulp-concat'),
 jade 		= require("gulp-jade"),
-//uglify 		= require("gulp-uglify"), //disabling for dev
+uglify 		= require("gulp-uglify"), //disable for dev
 minifyCSS 	= require('gulp-minify-css'),
-uncss       = require('gulp-uncss'),
 sftp 		= require('gulp-sftp'),
 path 		= require('path'),
 fs 			= require('fs');
@@ -33,7 +31,7 @@ gulp.task('scripts', function() {
 
     return gulp.src(scriptOrder)
         .pipe(concat('site.min.js'))
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('build/js'))
         .on('error', gutil.log);
 });

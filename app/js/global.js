@@ -11,21 +11,19 @@ var scrolling = false;
 
 // OFFSETS
 // Returns section offsets
-// Optional: Page
 // -------------------------
-var Offsets = function(page) {
-	var data;
-
-	//SINGLE
-	//requires page (ID)
-	var singlePage = function(page) {
+var Offsets = {
+	
+	//singlePage
+	//requires: page (ID)
+	singlePage: function(page) {
 		data = $('#'+page).offset().top;
 		return data;
-	};
+	},
 
-	//ALL
+	//allPages
 	//returns all positions
-	var allPages = function() {
+	allPages: function() {
 		var id;
 		positions = [];
 		pages = [];
@@ -40,53 +38,52 @@ var Offsets = function(page) {
 
 		data = { height: heights, y: positions, id: pages };
 		return data;
-	};
-
-
-	if(page) {
-		return singlePage(page);
-	} else {
-		return allPages();
 	}
 };
 
 // NAVIGATION & SCROLLING
 // Controls main nav & content links
 // ----------------------------------
-var Navigation = function() {
+var Navigation = {
+	
+	//init
+	//handles nav click
+	init: function() {
+		$('#navlist li a').click(function(e){    
+			e.preventDefault();
 
-	$('#navlist li a').click(function(e){    
-		e.preventDefault();
+			//change active nav item
+			$('#navlist li a').removeClass('active');
+			$(this).addClass('active');
 
-		//change active nav item
-		$('#navlist li a').removeClass('active');
-		$(this).addClass('active');
+			//scroll to relevant area
+			scrolling = true;
+			var page = $(this).data('id');
+			var scrollTo = Offsets.singlePage(page);
 
-		//scroll to relevant area
-		scrolling = true;
-		var page = $(this).data('id');
-		var scrollTo = Offsets(page);
-
-		$view.disablescroll({ handleScrollbar: false });
-		
-		//scroll to defined page
-		$site.animate({
-			scrollTop: scrollTo
-		}, 2000, 'easeInOutBack', function() {
-			window.location.hash = page;
-			scrolling = false;
-			$view.disablescroll("undo");
+			$view.disablescroll({ handleScrollbar: false });
+			
+			//scroll to defined page
+			$site.animate({
+				scrollTop: scrollTo
+			}, 2000, 'easeInOutBack', function() {
+				window.location.hash = page;
+				scrolling = false;
+				$view.disablescroll("undo");
+			});
 		});
-	});
+	}
 };
 
 //  SCROLLING
 //  Controls various scrolling animations
 // --------------------------------------
-var Scroll = function() {
+var Scroll = {
 
-	/* -- MANUAL PAGE & NAV CHANGE -- */
-	var pageSnap = function(direction) {
+	//pageSnap
+	//Handles active nav & page snap scroll
+	//requires: direction (up, down)
+	pageSnap: function(direction) {
 		var scrollAction, i, height, end, viewed, diff;
 		var offsets = Offsets();
 		var position = $view.scrollTop();
@@ -150,53 +147,57 @@ var Scroll = function() {
 			} 
 		});
 
-	};
+	},
 
-	var timeout = null;
-	var lastscroll = 0;
-	var direction = null;
+	init: function() {
+		var timeout = null;
+		var lastscroll = 0;
+		var direction = null;
 
-	$view.scroll(function(e) {	
+		$view.scroll(function(e) {	
 
-		//if scrolling isn't animated
-		if(!scrolling) {
-			//get direction
-			if($view.scrollTop() > lastscroll) { 
-				direction = "down";
-			} else { 
-				direction = "up";
-			}
-			lastscroll = $view.scrollTop();
-
-			if(direction) {	
-				//set timeout for scroll animations
-				if (timeout) {
-					clearTimeout(timeout);
-					timeout = false;
+			//if scrolling isn't animated
+			if(!scrolling) {
+				//get direction
+				if($view.scrollTop() > lastscroll) { 
+					direction = "down";
+				} else { 
+					direction = "up";
 				}
-				timeout = setTimeout(
-					pageSnap(direction), 200);
-				direction = null;
+				lastscroll = $view.scrollTop();
+
+				if(direction) {	
+					//set timeout for scroll animations
+					if (timeout) {
+						clearTimeout(timeout);
+						timeout = false;
+					}
+					timeout = setTimeout(
+						pageSnap(direction), 200);
+					direction = null;
+				}
 			}
-		}
-	});
+		});
+	}
 };
 
 // RESPONSIVE 
 // Responsive functionality
 //-----------------------------
-var Responsive = function() {
-	$('.section').css('min-height', $view.height());
-
-	$(window).resize(function () {
+var Responsive = {
+	init: function() {
 		$('.section').css('min-height', $view.height());
-	});
+
+		$(window).resize(function () {
+			$('.section').css('min-height', $view.height());
+		});
+	}
 };
 
 // JQUERY ONLOAD
 //-------------------------------------
 $(function() {
-  Responsive();
-  Navigation();
-  Scroll();
+  Responsive.init();
+  Navigation.init();
+  Scroll.init();
 });
