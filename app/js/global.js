@@ -47,8 +47,11 @@ var Offsets = {
 var Navigation = {
 	
 	//function: init
-	//handles nav click
+	//handles nav click & scroll
 	init: function() {
+		//set first nav active onload
+		$('#navlist li:first-child a').addClass('active');
+
 		$('#navlist li a').click(function(e){    
 			e.preventDefault();
 
