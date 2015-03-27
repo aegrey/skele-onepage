@@ -21,8 +21,6 @@
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
-    "escape-html": "*",
-    "event-stream": "*",
     "gulp": "~3.8.9",
     "gulp-clean": "~0.3.1",
     "gulp-util": "~3.0.1",
