@@ -2,7 +2,7 @@
 ### Responsive One Page Skeleton using Gulp, Jade, Sass
 ----
 
-This is a skeleton I originally built for my portfolio. I've customize it further in the future if requests are made, but for now it's a great simple base for a single page website that uses Bootstrap for responsiveness. You can view the demo at http://aegrey.github.io/
+This is a skeleton I originally built for my portfolio. I'll customize it further in the future if requests are made or as I come across bugs, but for now it's a easy to use simple base for a single page or one page website that uses Bootstrap for responsiveness. You can view the demo at http://aegrey.github.io/
 
 ----
 #### Requirements
