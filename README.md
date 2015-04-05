@@ -1,7 +1,9 @@
 # skeleOnePage
 ### Responsive One Page Skeleton using Gulp, Jade, Sass
 ----
-This is a skeleton originally built for my own portfolio, [http://www.anneliesegrey.com](http://www.anneliesegrey.com). I've got further customizations planned, but for now it's a great simple base that uses Bootstrap for responsiveness (of course, actual responsiveness depends on how you define the content you put within each page).
+
+This is a skeleton I originally built for my portfolio. I've customize it further in the future if requests are made, but for now it's a great simple base for a single page website that uses Bootstrap for responsiveness. You can view the demo at http://aegrey.github.io/
+
 ----
 #### Requirements
  This Library uses node.js & Gulp. If you do not have node.js or node package manager installed, visit http://nodejs.org/ for instructions.
