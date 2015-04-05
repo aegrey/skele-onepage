@@ -14,14 +14,14 @@ var scrolling = false;
 // -------------------------
 var Offsets = {
 	
-	//function: singlePage
+	//METHOD: singlePage
 	//requires: page (ID)
 	singlePage: function(page) {
 		data = $('#'+page).offset().top;
 		return data;
 	},
 
-	//function: allPages
+	//METHOD: allPages
 	//returns all positions
 	allPages: function() {
 		var id;
@@ -46,18 +46,16 @@ var Offsets = {
 // ----------------------------------
 var Navigation = {
 	
-	//function: init
-	//handles nav click & scroll
+	//METHOD: init
+	//Manually animates page scroll
 	init: function() {
 		//set first nav active onload
-		$('#navlist li:first-child a').addClass('active');
-
 		$('#navlist li a').click(function(e){    
 			e.preventDefault();
 
 			//change active nav item
-			$('#navlist li a').removeClass('active');
-			$(this).addClass('active');
+			$('#navlist li').removeClass('active');
+			$(this).parent('li').addClass('active');
 
 			//scroll to relevant area
 			scrolling = true;
@@ -80,109 +78,41 @@ var Navigation = {
 
 //  SCROLLING
 //  Controls various scrolling animations
-// --------------------------------------
+// --------------------------------------------------
 var Scroll = {
 
-	//function: pageSnap
-	//handles manual scroll nav highlights
-	//handles manual scroll page snap (currently not functional)
-	//requires: direction (up, down)
-	pageSnap: function(direction) {
-		var scrollAction, i, height, end, viewed, diff;
-		var offsets = Offsets.allPages();
-		var position = $view.scrollTop();
-		var viewport = $view.height();
-		var disable = 0;
+	//METHOD: pageSnap
+	//calls bootstrap scrollspy on nav
+	//snaps to next section
+	pageSnap: function() {
 		
+		$('body').scrollspy({ target: '#nav', offset: 300 });
 
-		//if user can see bottom of section and scrolls, pop and change
-		$.each(offsets['y'], function(key,section) {
+		$('#nav').on('activate.bs.scrollspy', function (e) {
 			
-			height = offsets['height'][key]; //height of section
-			//special function for specialties
-			if(key == 0) { height = height + $('#header').outerHeight(true); }
+			//get next active ID
+			var page = $('#navlist li.active a').data('id');
+			var scrollTo = Offsets.singlePage(page);
 
-			//calculate for down
-			if(direction == 'down') {
-				end = section + height; //bottom of section (with bar)
-				viewed = position + viewport; //bottom of screen
-				diff = end + 100; // room for top bar
-
-				if(position > section && position < end && viewed > diff) {
-					key = key + 1;
-					scrollAction = true;
-				}
-			}
-
-			//calculate for up
-			if(direction == 'up') {
-				end = 0;
-				if(section > viewport) {
-					end = section - viewport; //bottom of section (with bar)
-				}
-
-				if(position <= section && position > end) {
-					if(key > 0) { key = key - 1; }
-					scrollAction = true;
-				}
-			}
-
-			if(scrollAction) {
+			//snap to next page
+			$view.disablescroll({ handleScrollbar: false });
+			scrolling = true;
 				
-				//set nav
-				$('#navlist li a').removeClass('active');
-				$('#navlist li a.'+offsets['id'][key]).addClass('active');
-							
-				//snap
-				//TODO: Fix/build out behavior
-				/*$view.disablescroll({ handleScrollbar: false });
-				scrolling = true;
-				
-				$site.animate({
-					scrollTop: offsets['y'][key]
-				}, 1500, 'easeInOutQuint', function() {
-					scrolling = false;
-					window.location.hash = '#'+offsets['id'][key];
-					$view.disablescroll("undo");
-				});*/
-
-				//stop the loop
-				return false;
-			} 
+			$site.animate({
+				scrollTop: scrollTo
+			}, 1000, 'easeInOutCirc', function() {
+				scrolling = false;
+				$view.disablescroll("undo");
+				window.location.hash = '#'+page;
+			});
+			
 		});
-
 	},
-	//function: init
+	
+	//METHOD: init
 	//initiates page scrolling binds
 	init: function() {
-		var timeout = null;
-		var lastscroll = 0;
-		var direction = null;
-
-		$view.scroll(function(e) {	
-
-			//if scrolling isn't animated
-			if(!scrolling) {
-				//get direction
-				if($view.scrollTop() > lastscroll) { 
-					direction = "down";
-				} else { 
-					direction = "up";
-				}
-				lastscroll = $view.scrollTop();
-
-				if(direction) {	
-					//set timeout for scroll animations
-					if (timeout) {
-						clearTimeout(timeout);
-						timeout = false;
-					}
-					timeout = setTimeout(
-						Scroll.pageSnap(direction), 200);
-					direction = null;
-				}
-			}
-		});
+		this.pageSnap();
 	}
 };
 
@@ -190,7 +120,7 @@ var Scroll = {
 // Responsive functionality
 //-----------------------------
 var Responsive = {
-	//function init
+	//METHOD: init
 	//initiates window resize bind
 	init: function() {
 		$('.section').css('min-height', $view.height());

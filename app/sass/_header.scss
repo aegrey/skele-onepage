@@ -1,0 +1,52 @@
+// HEADER STYLES
+// nav, logo
+// ----------------------------------------------
+
+//Main Navigation
+nav {
+	position: fixed;
+	right: 0;
+	left: 0;
+	top: 0;
+	z-index: 200;
+	background: $opaque-grey;
+
+	#navlist {
+		text-align: right;
+		li {
+			display: inline-block;
+			margin-left: 2em;
+
+			a {
+				display: block;
+				font-family: $copy-font;
+				color: #ffffff;
+				font-size: .8em;
+				text-transform: uppercase;
+				padding: 10px 5px;
+			}
+			a:hover {
+				color: $text-color;
+			}	
+		}
+		li.active {
+			background-color: $background;
+			a {
+				color: $text-color;
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+header {
+	.logo {
+		position: relative;
+		float: left;
+		clear: none;
+		img {
+			border: 0;
+		}
+	}
+
+}

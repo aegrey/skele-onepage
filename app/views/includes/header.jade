@@ -1,9 +1,15 @@
-//- Top area for SEO
-div.top #{config.site_title} - #{config.site_desc}
-
 //- Fixed Nav Menu
 nav#nav
-	ul#navlist
-		each val in pages
-			li 
-				a(href="##{val}" data-id="#{val}" class="#{val}" onClick="_gaq.push(['_trackEvent', 'main+nav', '#{val}']);") #{val}
+	div.container-fluid
+		div.navbar-header
+			button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#desktopNav")
+				span.sr-only Toggle navigation
+				i.fa.fa-bars
+		div(class="collapse navbar-collapse" id="desktopNav")
+			ul#navlist.nav
+				li(role="presentation")
+					a(href="#one" data-id="one" class="one" onClick="_gaq.push(['_trackEvent', 'nav', 'one']);") Page One
+				li(role="presentation")
+					a(href="#two" data-id="two" class="two" onClick="_gaq.push(['_trackEvent', 'nav', 'two']);") Page Two
+				li(role="presentation")
+					a(href="#three" data-id="three" class="three" onClick="_gaq.push(['_trackEvent', 'nav', 'three']);") Page Three
