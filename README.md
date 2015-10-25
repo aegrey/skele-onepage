@@ -2,7 +2,7 @@
 ### Responsive One Page Skeleton using Gulp, Jade, Sass
 ----
 
-This is a skeleton I originally built for my portfolio. I'll customize it further in the future if requests are made or as I come across bugs, but for now it's a easy to use simple base for a single page or one page website that uses Bootstrap for responsiveness. You can view the demo at http://aegrey.github.io/
+This is a skeleton I originally built for my portfolio. I'll customize it further in the future if requests are made or as I come across bugs, but for now it's a easy to use simple base for a single page or one page website that uses Bootstrap for responsiveness (I plan on replacing this soon). You can view the demo at http://aegrey.github.io/
 
 ----
 #### Requirements
@@ -29,3 +29,23 @@ All javascript calls are defined in app/views/includes/scripts.jade. Google Anal
 
 ### Section Pages
 All sections are in stored pages/ directory. 
+
+---
+
+Skele-OnePage is a quick startup for a one page website using Gulp build tool, Jade, and SASS.
+
+Copyright (C) 2015  Ann Eliese Grey
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details in the "LICENSE" file in this repository.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
