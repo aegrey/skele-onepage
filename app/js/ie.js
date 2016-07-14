@@ -1,4 +1,3 @@
-
 /* --------------------------------------
 | IE SPECIFIC FUNCTIONS
 | Scripts for IE Compatibility

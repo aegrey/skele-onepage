@@ -14,10 +14,16 @@ var scrolling = false;
 // -------------------------
 var Offsets = {
 	
-	//METHOD: singlePage
+	///METHOD: singlePage
 	//requires: page (ID)
 	singlePage: function(page) {
 		data = $('#'+page).offset().top;
+		
+		//for top nav
+		if($view.scrollTop() == 0) {
+			data = data - 17;
+		}
+		
 		return data;
 	},
 
@@ -78,34 +84,35 @@ var Navigation = {
 
 //  SCROLLING
 //  Controls various scrolling animations
-// --------------------------------------------------
+// ----------------------------------------
 var Scroll = {
 
 	//METHOD: pageSnap
-	//calls bootstrap scrollspy on nav
-	//snaps to next section
+	//calls bootstrap scrollspy on nav, snaps to next section
 	pageSnap: function() {
 		
-		$('body').scrollspy({ target: '#nav', offset: 300 });
+		$('body').scrollspy({ target: '#nav', offset: 200 });
 
-		$('#nav').on('activate.bs.scrollspy', function (e) {
+		$('#nav').on('activate.bs.scrollspy', function() {
 			
+			//disable user scroll
+			$view.disablescroll({ handleScrollbar: false });
+			scrolling = true;
+
 			//get next active ID
 			var page = $('#navlist li.active a').data('id');
 			var scrollTo = Offsets.singlePage(page);
 
-			//snap to next page
-			$view.disablescroll({ handleScrollbar: false });
-			scrolling = true;
-				
-			$site.animate({
-				scrollTop: scrollTo
-			}, 1000, 'easeInOutCirc', function() {
-				scrolling = false;
-				$view.disablescroll("undo");
-				window.location.hash = '#'+page;
-			});
-			
+			if(!scrolling) {
+                //snap to next page
+    			$site.animate({
+    				scrollTop: scrollTo
+    			}, 1000, 'easeInOutCirc', function() {
+    				scrolling = false;
+    				$view.disablescroll("undo");
+    				window.location.hash = '#'+page;
+    			});
+            }
 		});
 	},
 	
@@ -120,6 +127,7 @@ var Scroll = {
 // Responsive functionality
 //-----------------------------
 var Responsive = {
+	
 	//METHOD: init
 	//initiates window resize bind
 	init: function() {
